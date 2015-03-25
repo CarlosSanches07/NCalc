@@ -491,6 +491,26 @@ namespace NCalc.Tests
         }
 
         [TestMethod]
+        public void ShouldParseVariablesNamedAsE()
+        {
+            var e = new Expression("(E+1)");
+            e.EvaluateParameter += (name, args) =>
+            {
+                args.Result = 5;
+            };
+
+            Assert.AreEqual(6, e.Evaluate());
+
+            e = new Expression("(e+1)");
+            e.EvaluateParameter += (name, args) =>
+            {
+                args.Result = 5;
+            };
+
+            Assert.AreEqual(6, e.Evaluate());
+        }
+
+        [TestMethod]
         public void ShouldEvaluateArrayParameters()
         {
             var e = new Expression("x * x", EvaluateOptions.IterateParameters);

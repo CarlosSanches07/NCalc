@@ -74,7 +74,7 @@ public override void DisplayRecognitionError(String[] tokenNames, RecognitionExc
     numberFormatInfo.NumberDecimalSeparator = ".";
 }
 
-ncalcExpression returns [LogicalExpression value]
+public ncalcExpression returns [LogicalExpression value]
 	: logicalExpression EOF! {$value = $logicalExpression.value; }
 	;
 
@@ -265,7 +265,8 @@ DATETIME
 NAME	:	'[' (options {greedy=false;} : ~(']')*) ']'
 	;
 	
-E	:	('E'|'e') ('+'|'-')? DIGIT+ 
+fragment E	
+	:	('E'|'e') ('+'|'-')? DIGIT+ 
 	;	
 	
 fragment LETTER
